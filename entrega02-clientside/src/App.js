@@ -13,7 +13,7 @@ import EditClients from './Pages/EditClients';
 
 import Payment from './Pages/Payment';
 
-import {BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Routes, useNavigate} from 'react-router-dom'
 import BookPage from './Pages/BookPage';
 import CartPage from './Pages/CartPage';
 import SignIn from './Pages/SignIn';
@@ -28,7 +28,7 @@ function App() {
   const navigate = useNavigate();
 
   // Lidando com login no front end
-  const [login, setLogin] = useState(localStorage.getItem('isLogged') != undefined ? localStorage.getItem('isLogged'): false ) // Verifica se o usuario está logado ou nao 
+  const [login, setLogin] = useState(localStorage.getItem('isLogged') !== undefined ? localStorage.getItem('isLogged'): false ) // Verifica se o usuario está logado ou nao 
 
   //Função para logout
   const handleLogout = () => {
@@ -98,7 +98,7 @@ function App() {
             <Route path='/admin/edit/clients' element={<EditClients users={users} />} />
             <Route path='/admin/edit/products' element={<EditProducts bookList={bookList} />} />
             <Route path='/admin' element={<Admin />} />
-            <Route path='/perfil' element={<Perfil user={login == true ? JSON.parse(localStorage.getItem('user')) : null} />} />
+            <Route path='/perfil' element={<Perfil user={login === true ? JSON.parse(localStorage.getItem('user')) : null} />} />
             <Route exact path="/" element={<Home bookList={bookList}/>} />
             <Route path="*" element={
               <div> Caminho nao existe</div>
