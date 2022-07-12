@@ -6,6 +6,14 @@ export const getBookByTitle = async (title) => {
   return data;
 }
 
+export const getBooks = async () => {
+  const url = `/api/getBook/`;
+  const response = await fetch(url);
+  const data = await response.json();
+  console.log(data);
+  return data;
+}
+
 export const addBook = async (bookObj) => {
   const url = `/api/addBook`;
   const response = await fetch(url, {

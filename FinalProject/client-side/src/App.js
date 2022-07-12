@@ -22,6 +22,7 @@ import SignUp from './Pages/SignUp';
 import users from './DataBases/userDB'
 import Perfil from './Pages/Pefil';
 import EditProducts from './Pages/EditProducts';
+import * as BooksApi from './helpers/BookApi';
 
 function App() {
 
@@ -45,7 +46,16 @@ function App() {
   }
   
   // Lista de livros disponiveis e itens do carrinho
-  const [bookList, setList] = useState([new Book("Harry Potter e a Pedra Filosofal", "J. K. Rowling", 40.00, "a", 1, "Primeiro livro da franquia..."), new Book("A Rainha Vermelha - Vol. 1", "Aveyard,Victoria", 44.99, "a", 1, "Primeiro livro da franquia..."), new Book("A Rainha Vermelha - Vol. 2", "Aveyard,Victoria", 44.99, "a", 1, "Segundo livro da franquia..."), new Book("A Rainha Vermelha - Vol. 3", "Aveyard,Victoria", 44.99, "a", 1, "Terceiro livro da franquia...")]);
+  const [bookList, setList] = useState([]);
+
+  useEffect(() => {
+    BooksApi.getBooks().then((Arr) => setList(Arr));
+  }, []);
+
+  useEffect(() => {
+    console.log(bookList);
+  }, [bookList])
+
   const [cart, setCart] = useState([]);
 
   /*GERENCIAMENTO DO CARRINHO */
@@ -63,21 +73,20 @@ function App() {
     setCart(filteredCart);
   }
 
-  /* GERENCIAMENTO DOS LIVROS */
-  const addBook = (titulo, autores, valor, editora, edicao, descricao) =>
-  {
-    let book = new Book(titulo, autores, valor, editora, edicao, descricao);
-    console.log(book)
-    setList([...bookList, book])
-    console.log("Criado com sucesso!!")
-  }
+  // /* GERENCIAMENTO DOS LIVROS */
+  // const addBook = (titulo, autores, valor, editora, edicao, descricao) =>
+  // {
+  //   let book = new Book(titulo, autores, valor, editora, edicao, descricao);
+  //   console.log(book)
+  //   setList([...bookList, book])
+  //   console.log("Criado com sucesso!!")
+  // }
   
-  const deleteBook = (book) =>
-  {
-    let filteredList = bookList.filter(item => item.id !== book.id)
-    setList(filteredList)
-  }
-
+  // const deleteBook = (book) =>
+  // {
+  //   let filteredList = bookList.filter(item => item.id !== book.id)
+  //   setList(filteredList)
+  // }
   
   console.log("usr", users)
   
