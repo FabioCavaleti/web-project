@@ -32,8 +32,20 @@ router.post('/api/addBook', (req, res) => {
     res.send("Cadastro efetuado com sucesso!!")
 })
 
+
+
 // Consulta livros (HTTP - GET)
 
+router.get('/api/getBook/', (req, res) => {
+
+    Book.find({})
+    .then(doc => {
+        res.send(doc)
+    })
+    .catch(err => {
+        res.send(err)
+    })
+})
 router.get('/api/getBook/:title', (req, res) => {
     let title = req.params.title;
 
