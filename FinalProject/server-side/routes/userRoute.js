@@ -35,6 +35,17 @@ router.post('/api/addUser', (req, res) => {
 
 // Consulta usários (HTTP GET)
 
+router.get('/api/getUser/', (req, res) => {
+    let name = req.params.name;
+    
+    User.find({})
+    .then(doc => { //OBS: doc é um array de objetos e pode devolver vários documentos com mesmo nome
+        res.send(doc);
+    })
+    .catch(err => {
+        res.send(err);
+    })
+})
 router.get('/api/getUser/:name', (req, res) => {
     let name = req.params.name;
     
