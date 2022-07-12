@@ -88,8 +88,6 @@ function App() {
   //   setList(filteredList)
   // }
   
-  console.log("usr", users)
-  
   return (
         <div className="App">
           <TopBar login={login} handleLogout={handleLogout}></TopBar>
