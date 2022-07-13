@@ -15,12 +15,17 @@ export const getBooks = async () => {
 }
 
 export const addBook = async (bookObj) => {
+
+  console.log(bookObj)
   const url = `/api/addBook`;
   const response = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(bookObj),
   });
+
+//erro
   const data = await response.json();
+
   console.log(data);
   return data;
 }

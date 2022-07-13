@@ -106,7 +106,7 @@ function App() {
             <Route path='/admin/edit/products' element={<EditProducts bookList={bookList} />} />
             <Route path='/admin' element={<Admin />} />
             <Route path='/perfil' element={<Perfil user={login == true ? JSON.parse(localStorage.getItem('user')) : null} />} />
-            <Route exact path="/" element={<Home bookList={bookList}/>} />
+            <Route exact path="/" element={<Home bookList={bookList}/>}/>
             <Route path="*" element={
               <div> Caminho nao existe</div>
             } />
