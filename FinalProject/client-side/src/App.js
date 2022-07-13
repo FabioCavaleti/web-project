@@ -59,21 +59,6 @@ function App() {
 
 
   const [cart, setCart] = useState([]);
-
-  /*GERENCIAMENTO DO CARRINHO */
-  const addItem = (item) => {
-    setCart([...cart, item]);
-  }
-
-  const clearCart = () =>{
-    setCart([]);
-  }
-
-  const deleteItem = (item) =>
-  {
-    let filteredCart = cart.filter(i => i.id !== item.id)
-    setCart(filteredCart);
-  }
   
   return (
         <div className="App">
