@@ -2,7 +2,7 @@ import './App.css';
 import NavBar from './Components/NavBar';
 import TopBar from './Components/TopBar';
 import Footer from './Components/Footer'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Book from './Components/Book';
 import Card from './Components/Card'
 import Home from './Pages/Home'
@@ -22,14 +22,26 @@ import SignUp from './Pages/SignUp';
 import users from './DataBases/userDB'
 import Perfil from './Pages/Pefil';
 import EditProducts from './Pages/EditProducts';
-import * as BooksApi from './helpers/BookApi';
+import Context from './context/Context';
 
 function App() {
+
+  const {
+    bookList,
+    filterByCategory,
+    filterBooks,
+    filterByGenre,
+    orderByColumn
+  } = useContext(Context);
+
+  useEffect(() => {
+    filterBooks();
+  }, [filterByCategory, filterByGenre, orderByColumn])
 
   const navigate = useNavigate();
 
   // Lidando com login no front end
-  const [login, setLogin] = useState(localStorage.getItem('isLogged') != undefined ? localStorage.getItem('isLogged'): false ) // Verifica se o usuario está logado ou nao 
+  const [login, setLogin] = useState(localStorage.getItem('isLogged') !== undefined ? localStorage.getItem('isLogged'): false ) // Verifica se o usuário está logado ou nao 
 
   //Função para logout
   const handleLogout = () => {
@@ -44,49 +56,9 @@ function App() {
   {
     setLogin(bool);
   }
-  
-  // Lista de livros disponiveis e itens do carrinho
-  const [bookList, setList] = useState([]);
 
-  useEffect(() => {
-    BooksApi.getBooks().then((Arr) => setList(Arr));
-  }, []);
-
-  useEffect(() => {
-    console.log(bookList);
-  }, [bookList])
 
   const [cart, setCart] = useState([]);
-
-  /*GERENCIAMENTO DO CARRINHO */
-  const addItem = (item) => {
-    setCart([...cart, item]);
-  }
-
-  const clearCart = () =>{
-    setCart([]);
-  }
-
-  const deleteItem = (item) =>
-  {
-    let filteredCart = cart.filter(i => i.id !== item.id)
-    setCart(filteredCart);
-  }
-
-  // /* GERENCIAMENTO DOS LIVROS */
-  // const addBook = (titulo, autores, valor, editora, edicao, descricao) =>
-  // {
-  //   let book = new Book(titulo, autores, valor, editora, edicao, descricao);
-  //   console.log(book)
-  //   setList([...bookList, book])
-  //   console.log("Criado com sucesso!!")
-  // }
-  
-  // const deleteBook = (book) =>
-  // {
-  //   let filteredList = bookList.filter(item => item.id !== book.id)
-  //   setList(filteredList)
-  // }
   
   return (
         <div className="App">
@@ -103,8 +75,8 @@ function App() {
             <Route path='/admin/edit/clients' element={<EditClients users={users} />} />
             <Route path='/admin/edit/products' element={<EditProducts bookList={bookList} />} />
             <Route path='/admin' element={<Admin />} />
-            <Route path='/perfil' element={<Perfil user={login == true ? JSON.parse(localStorage.getItem('user')) : null} />} />
-            <Route exact path="/" element={<Home bookList={bookList}/>}/>
+            <Route path='/perfil' element={<Perfil user={login === true ? JSON.parse(localStorage.getItem('user')) : null} />} />
+            <Route exact path="/" element={<Home bookList={bookList}/>} />
             <Route path="*" element={
               <div> Caminho nao existe</div>
             } />

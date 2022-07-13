@@ -28,7 +28,7 @@ function App() {
   const navigate = useNavigate();
 
   // Lidando com login no front end
-  const [login, setLogin] = useState(localStorage.getItem('isLogged') != undefined ? localStorage.getItem('isLogged'): false ) // Verifica se o usuario está logado ou nao 
+  const [login, setLogin] = useState(localStorage.getItem('isLogged') !== undefined ? localStorage.getItem('isLogged'): false ) // Verifica se o usuario está logado ou nao 
 
   //Função para logout
   const handleLogout = () => {

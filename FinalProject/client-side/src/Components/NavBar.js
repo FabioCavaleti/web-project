@@ -1,15 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import Context from '../context/Context';
 import './NavBar.css';
-import NavbarItem from './NavbarItem';
 
 const NavBar = (props) => {
+    const categoriesArr = 
+    [
+        ["Mais vendidos", "Most sold"],
+        ["Lançamentos", "Releases"],
+        ["Todos", "All"],
+        ["Clássicos", "Classic"],
+        ["HQs e Mangas", "HQs"],
+        ["Literatura Infantojuvenil", "Childish"],
+        ["Literatura Estrangeira", "Foreign"],
+        ["Literatura Nacional", "Nacional"],
+    ];
+
+    const {
+        setFilterByCategory,
+        ableFilterArea,
+    } = useContext(Context)
+
+    const defineCategoryFilter = ({target}) => {
+        ableFilterArea(true)
+        setFilterByCategory({
+            categoryFilter: target.id,
+        })
+    }
+
+
     return ( 
-        <nav>
-            <NavbarItem link='#home' name='Mais vendidos'></NavbarItem>
-            <NavbarItem link='#home' name='Lançamentos'></NavbarItem>
-            <NavbarItem link='#home' name='Todos'></NavbarItem>
-        </nav>
-     );
+        <div className='nav-top-bar'>
+            { categoriesArr.map((el) => (
+            <button onClick={defineCategoryFilter} key={el[0]} id={el[1]} >{el[0]}</button>)) }
+        </div>
+    );
 }
  
 export default NavBar;
