@@ -1,6 +1,22 @@
-nav{
+.nav-top-bar {
     overflow: hidden;
     background-color: #ffffff;
-
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
 }
 
+.nav-top-bar button{
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 16px;
+    color: black;
+    border: 0;
+}
+
+.nav-top-bar  button:hover{
+    background-color: #eee;
+}
