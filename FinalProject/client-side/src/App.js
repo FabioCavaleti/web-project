@@ -35,12 +35,13 @@ function App() {
     filterByCategory,
     filterBooks,
     filterByGenre,
+    filterByPrice,
     orderByColumn
   } = useContext(Context);
 
   useEffect(() => {
     filterBooks();
-  }, [filterByCategory, filterByGenre, orderByColumn])
+  }, [filterByCategory, filterByGenre, orderByColumn, filterByPrice])
 
   const navigate = useNavigate();
 

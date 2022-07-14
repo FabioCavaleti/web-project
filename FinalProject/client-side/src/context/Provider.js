@@ -14,6 +14,10 @@ function Provider({ children }) {
     categoryFilter: '',
   });
 
+  const [filterByPrice, setFilterByPrice]= useState({
+    priceFilter: '',
+  })
+
   const [filterByGenre, setFilterByGenre] = useState({
     genreFilter: '',
   });
@@ -21,6 +25,21 @@ function Provider({ children }) {
   const [orderByColumn, setOrderByColumn] = useState({
     order: {column: '', sort: ''},
   })
+
+  const excludeFilters = () => {
+    setFilterByCategory({
+      categoryFilter: '',
+    })
+    setFilterByPrice({
+      priceFilter: '',
+    })
+    setFilterByGenre({
+      genreFilter: '',
+    })
+    setOrderByColumn({
+      order: {column: '', sort: ''},
+    })
+  }
 
   const categorySwitch = (categoryFilter, filteredArr) => {
     switch (categoryFilter) {
@@ -41,6 +60,21 @@ function Provider({ children }) {
         return filteredArr.filter((book) => book.category.includes(categoryFilter));
     }
   }
+  
+  const priceSwitch = (priceFilter, Arr) => {
+    switch (priceFilter) {
+      case '30':
+        return Arr.filter((el) => el.price <= 30);
+      case '30 - 50':
+        return Arr.filter((el) => el.price >= 30 && el.price <= 50);
+      case '50 - 80':
+        return Arr.filter((el) => el.price >= 50 && el.price <= 80);
+      case '80 - 140':
+        return Arr.filter((el) => el.price >= 80 && el.price <= 140);
+      default:
+        return Arr.filter((el) => el.price >= 140);
+    }
+  };
 
   const sorting = (Arr, sort) => {
     const MENOS_UM = -1;
@@ -68,6 +102,7 @@ function Provider({ children }) {
     console.log(newList2);
     return newList2;
   }
+  
 
   const orderSwitch = (order, filteredArr) => {
     const { column, sort } = order;
@@ -78,16 +113,21 @@ function Provider({ children }) {
     }
   };
 
+
   const filterBooks = () => {
     const { categoryFilter } = filterByCategory;
     const { genreFilter } = filterByGenre;
+    const { priceFilter } = filterByPrice;
     const { order } = orderByColumn;
     let filteredArr = data;
     if (categoryFilter) {
-      filteredArr = categorySwitch(categoryFilter, filteredArr)
+      filteredArr = categorySwitch(categoryFilter, filteredArr);
+    }
+    if (priceFilter) {
+      filteredArr = priceSwitch(priceFilter, filteredArr);
     }
     if (genreFilter) {
-      filteredArr = filteredArr.filter((el) => el.genre.includes(genreFilter))
+      filteredArr = filteredArr.filter((el) => el.genre.includes(genreFilter));
     }
     if (order.column) {
       filteredArr = orderSwitch(order, filteredArr);
@@ -126,6 +166,9 @@ function Provider({ children }) {
         setFilterByGenre,
         orderByColumn,
         setOrderByColumn,
+        filterByPrice,
+        setFilterByPrice,
+        excludeFilters,
       } }
     >
       {children}
