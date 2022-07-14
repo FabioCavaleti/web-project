@@ -16,7 +16,7 @@ export const addBook = async (bookObj) => {
 
   console.log(bookObj)
   const url = `/api/addBook`;
-  const response = await fetch('https://httpbin.org/post', {
+  const response = await fetch(url, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

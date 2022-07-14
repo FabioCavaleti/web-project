@@ -23,7 +23,7 @@ const BookPage = ({bookList, addItem}) => {
             <DescriptionCard book={book} />
             <Details book={book}/>
         </>
-     );
+    );
 }
  
 export default BookPage;
