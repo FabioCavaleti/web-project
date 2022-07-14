@@ -10,6 +10,7 @@ import BookInfo from './Pages/BookPage'
 import Admin from './Pages/Admin';
 import EditAdmins from './Pages/EditAdmins';
 import EditClients from './Pages/EditClients';
+import EditBookForm from './Pages/EditBookForm';
 
 import Payment from './Pages/Payment';
 
@@ -91,6 +92,7 @@ function App() {
             <Route path='/admin/edit/products' element={<EditProducts bookList={bookList} />} />
             <Route path='/admin' element={<Admin />} />
             <Route path='/perfil' element={<Perfil user={login === true ? JSON.parse(localStorage.getItem('user')) : null} />} />
+
             <Route exact path="/" element={<Home bookList={bookList}/>} />
             <Route path="*" element={
               <div> Caminho nao existe</div>

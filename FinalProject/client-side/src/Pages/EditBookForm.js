@@ -1,17 +1,14 @@
 import React from 'react';
 import {useState} from 'react'
-import * as BookApi from '../helpers/BookApi'
 import '../Pages/Edit.css'
-import Button from 'react-bootstrap/Button'
-import Modal from 'react-bootstrap/Modal'
+import * as BookApi from '../helpers/BookApi'
+import { Link } from 'react-router-dom'
 
 
-const ProductForm = () => {
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    
+
+const EditBookForm = (props) =>{
+
     const [title, setTitle] = useState()
     const [author, setAuthor] = useState()
     const [edition, setEdition] = useState()
@@ -23,6 +20,8 @@ const ProductForm = () => {
     const[price,setPrice] = useState()
     const[inv_qtd,setInv_qtd] = useState()
 
+
+    console.log(props)
 
 
     const addNewBook = (e) => {
@@ -48,19 +47,13 @@ const ProductForm = () => {
     }
 
 
-    
-    return(
-    <>
-        <Button variant="primary" onClick={handleShow}>
-            Adicionar novo Livro
-        </Button>
 
-        <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-                <Modal.Title>Coloque as informações do livro</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
+
+
+    return(
+        
             <div>
+
                 <form onSubmit={addNewBook} className='edit-products manage container-fluid'>
                     <label>Nome:</label><input type='text' placeholder='Digite o nome do livro' onChange={(e) => setTitle(e.target.value)}></input><br></br>
                     <label>Autor:</label><input type='text' placeholder='Digite o nome do autor' onChange={(e) => setAuthor(e.target.value)}></input><br></br>
@@ -79,43 +72,17 @@ const ProductForm = () => {
                     <label>Preço:</label><input type='number' placeholder='Digite o preço do livro' onChange={(e) => setPrice(e.target.value)}></input><br></br>
                     <label>Quantidade em estoque:</label><input type='number' placeholder='Selecione a quantidade de livros em estoque' onChange={(e) => setInv_qtd(e.target.value)}></input><br></br>
 
-                    <input type='submit' value='Salvar Livro'></input>
+                    <Link to='/admin/edit/products'><input type='submit' value='Salvar Livro'></input></Link>
                 </form>
             </div>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Close
-                </Button>
-                <Button variant="primary" onClick={handleClose}>
-                    Save Changes
-                </Button>
-            </Modal.Footer>
-        </Modal>
-    </>
         
 
 
+    )
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-    );
 
 }
 
-export default ProductForm
+export default EditBookForm

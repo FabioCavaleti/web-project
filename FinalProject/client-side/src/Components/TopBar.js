@@ -10,10 +10,10 @@ const TopBar = ({login, handleLogout}) => {
 
 
     // const usr = login == true ? JSON.parse(localStorage.getItem('user')) : {}
-    console.log("Teste")
+    /*console.log("Teste")
     console.log(login)
     console.log(usr)
-    console.log("adm", adm)
+    console.log("adm", adm)*/
 
     
     return ( 

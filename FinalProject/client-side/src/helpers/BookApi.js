@@ -10,7 +10,7 @@ export const getBooks = async () => {
   const url = `/api/getBook/`;
   const response = await fetch(url);
   const data = await response.json();
-  console.log(data);
+  //console.log(data);
   return data;
 }
 
@@ -18,12 +18,14 @@ export const addBook = async (bookObj) => {
 
   console.log(bookObj)
   const url = `/api/addBook`;
-  const response = await fetch(url, {
+  const response = await fetch('https://httpbin.org/post', {
     method: 'POST',
-    body: JSON.stringify(bookObj),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({a: 1, b: 'Textual content'})
   });
-
-//erro
   const data = await response.json();
 
   console.log(data);
