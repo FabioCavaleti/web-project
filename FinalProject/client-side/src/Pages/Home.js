@@ -7,7 +7,7 @@ const Home = ({bookList}) => {
         <div className='container'>
                   <ul className='books-container'>
                     {bookList.map(book =>
-                      <li className='book-item' key={book.id}>
+                      <li className='book-item' key={book._id}>
                         <Card book={book} ></Card>
                       </li>
                     )}  

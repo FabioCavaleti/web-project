@@ -3,17 +3,12 @@ import { Link } from 'react-router-dom';
 import users from '../DataBases/userDB';
 import './TopBar.css'
 
-const TopBar = ({login, handleLogout}) => {
+const TopBar = ({login, user, adm, handleLogout}) => {
 
-    let usr = (login == 'true' ? JSON.parse(localStorage.getItem('user')) : {} )
-    let adm = (usr != {} && usr.admin == true ? true : false)
+    
 
 
     // const usr = login == true ? JSON.parse(localStorage.getItem('user')) : {}
-    console.log("Teste")
-    console.log(login)
-    console.log(usr)
-    console.log("adm", adm)
 
     
     return ( 
