@@ -1,4 +1,4 @@
-nav a{
+.nav-top-bar button{
     float: left;
     display: block;
     text-align: center;
@@ -6,10 +6,9 @@ nav a{
     text-decoration: none;
     font-size: 16px;
     color: black;
+    border: 0;
 }
 
-nav a:hover{
-
+.nav-top-bar  button:hover{
     background-color: #eee;
-    
 }

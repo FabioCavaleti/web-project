@@ -2,7 +2,7 @@ import './App.css';
 import NavBar from './Components/NavBar';
 import TopBar from './Components/TopBar';
 import Footer from './Components/Footer'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import Book from './Components/Book';
 import Card from './Components/Card'
 import Home from './Pages/Home'
@@ -22,9 +22,24 @@ import SignUp from './Pages/SignUp';
 import users from './DataBases/userDB'
 import Perfil from './Pages/Pefil';
 import EditProducts from './Pages/EditProducts';
-import * as BooksApi from './helpers/BookApi';
+import Context from './context/Context';
 
 function App() {
+
+  // Lista de livros disponiveis e itens do carrinho
+  // const [bookList, setList] = useState([]);
+
+  const {
+    bookList,
+    filterByCategory,
+    filterBooks,
+    filterByGenre,
+    orderByColumn
+  } = useContext(Context);
+
+  useEffect(() => {
+    filterBooks();
+  }, [filterByCategory, filterByGenre, orderByColumn])
 
   const navigate = useNavigate();
 
@@ -57,19 +72,11 @@ function App() {
     setUser(usr);
   }
   
-  // Lista de livros disponiveis e itens do carrinho
-  const [bookList, setList] = useState([]);
+  
 
-  useEffect(() => {
-    BooksApi.getBooks().then((Arr) => setList(Arr));
-  }, []);
-
-  useEffect(() => {
-    console.log(bookList);
-  }, [bookList])
 
   const [cart, setCart] = useState([]);
-
+  
   /*GERENCIAMENTO DO CARRINHO */
   const addItem = (item) => {
     setCart([...cart, item]);
@@ -84,21 +91,6 @@ function App() {
     let filteredCart = cart.filter(i => i.id !== item.id)
     setCart(filteredCart);
   }
-
-  // /* GERENCIAMENTO DOS LIVROS */
-  // const addBook = (titulo, autores, valor, editora, edicao, descricao) =>
-  // {
-  //   let book = new Book(titulo, autores, valor, editora, edicao, descricao);
-  //   console.log(book)
-  //   setList([...bookList, book])
-  //   console.log("Criado com sucesso!!")
-  // }
-  
-  // const deleteBook = (book) =>
-  // {
-  //   let filteredList = bookList.filter(item => item.id !== book.id)
-  //   setList(filteredList)
-  // }
   
   return (
         <div className="App">
