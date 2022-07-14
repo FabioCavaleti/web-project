@@ -8,12 +8,12 @@ const BookPage = ({bookList, addItem}) => {
 
     // PEGANDO DADOS DO LIVRO 
     const params = useParams()
-    const [book, setBook] = useState(bookList.filter(book => book.id == params.id)[0]);
+    const [book, setBook] = useState(bookList.filter(book => book._id === params.id)[0]);
 
 
    
     useEffect(() =>{
-        setBook(bookList.filter(book => book.id == params.id)[0])
+        setBook(bookList.filter(book => book._id === params.id)[0])
         console.log(book)
     }, [params])
 
