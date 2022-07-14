@@ -6,7 +6,7 @@ const Card = ({book}) => {
     const {title, _id, price, author} = book
     return ( 
         <div className='card'>
-            <img src={'https://images-na.ssl-images-amazon.com/images/I/81-jvnt+hgL.jpg'} alt="Capa de livro" className="center" />
+            <img src={book.img} alt="Capa de livro" className="center" />
             <h3><Link to={`/bookpage/${_id}`}>{title}</Link></h3>
             <small>{author}</small>
             <br/>
