@@ -1,45 +1,59 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Sign.css'
-const SignIn = ({users, doLogin}) => {
+import * as userApi from '../helpers/UserApi'
 
-    const [login, setLogin] = useState(""); // Recebe credenciais de login do input
-    const [pass, setPass] = useState(""); // Recebe credenciais de senha do input
+const SignIn = ({login, handleAdm, handleUser, handleLogin}) => {
+
+    const [inputLogin, setInputLogin] = useState(""); // Recebe credenciais de login do input
+    const [inputPass, setInputPass] = useState(""); // Recebe credenciais de senha do input
     const [status, setStatus] = useState({
         type: '',
         message: ''
     })
     const navigate = useNavigate();
 
-    console.log(users)
 
-    const handleSubmit = (e) =>
+    const handleSubmit = async (e) =>
     {
         e.preventDefault();
-
-        
-
-        let user = users.filter((item) => item.name == login && item.password == pass ? true : false)
-        
-        
-
-        if(user.length == 1)
+        if(login == false)
         {
-            setStatus({type: "Sucesso", message:"Login efetuado com sucesso!!"})
-            localStorage.setItem('isLogged', true)
-            localStorage.setItem('user', JSON.stringify(user[0]))
-            doLogin(true, user[0])
-            window.alert(`Olá ${user[0].name}, login efetuado com sucesso!!`)
-            console.log(localStorage)
-            navigate('/')
 
+            let userObj = {userName: inputLogin, password: inputPass}
+            let user = await userApi.getLogin(userObj)
+            
+    
+            // let user = users.filter((item) => item.name == login && item.password == pass ? true : false)
+    
+            if(user.length == 1)
+            {
+                setStatus({type: "Sucesso", message:"Login efetuado com sucesso!!"})
+                handleLogin(true)
+                handleUser(user[0])
+                if(user[0].admin == true)
+                {
+                    handleAdm(true)
+                }
+                else{
+                    handleAdm(false)
+                }
+                window.alert(`Olá ${user[0].name}, login efetuado com sucesso!!`)
+                
+                navigate('/')
+    
+            }
+            else
+            {
+                setStatus({type: 'failed', message:'Login ou senha invalido!!'})
+                window.alert(`Login ou senha invalidos!!`)
+            }
         }
         else
         {
-            setStatus({type: 'failed', message:'Login ou senha invalido!!'})
-            window.alert(`Login ou senha invalidos!!`)
+            window.alert("Usuario já está logado!!")
         }
-        
+
     }
 
 
@@ -48,11 +62,11 @@ const SignIn = ({users, doLogin}) => {
                 <form onSubmit={handleSubmit} className='login-form'>
                     <label>
                         Usuário:
-                        <input type='text' name={login} onChange={(e) =>{setLogin(e.target.value)}} />
+                        <input type='text' name={inputLogin} onChange={(e) =>{setInputLogin(e.target.value)}} />
                     </label>
                     <label>
                         Senha:
-                        <input type='password' name={pass} onChange={(e) => {setPass(e.target.value)}} />
+                        <input type='password' name={inputPass} onChange={(e) => {setInputPass(e.target.value)}} />
                     </label>
                     <input className='sign-btn btn' value='Fazer login' type='submit'></input>
 

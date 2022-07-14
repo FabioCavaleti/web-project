@@ -27,6 +27,9 @@ import Context from './context/Context';
 
 function App() {
 
+  // Lista de livros disponiveis e itens do carrinho
+  // const [bookList, setList] = useState([]);
+
   const {
     bookList,
     filterByCategory,
@@ -42,21 +45,35 @@ function App() {
   const navigate = useNavigate();
 
   // Lidando com login no front end
-  const [login, setLogin] = useState(localStorage.getItem('isLogged') !== undefined ? localStorage.getItem('isLogged'): false ) // Verifica se o usuário está logado ou nao 
+  const [login, setLogin] = useState(false) // Verifica se o usuario está logado ou nao 
+  const [adm, setAdm] = useState(false);
+  const [user, setUser] = useState({});
 
   //Função para logout
   const handleLogout = () => {
     setLogin(false)
-    localStorage.setItem('isLogged', false);
-    localStorage.setItem('user', JSON.stringify({}))
+    setAdm(false)
+    setUser({})
+    window.alert('Logout executado com sucesso!!')
     navigate('/')
     
   }
 
-  const doLogin = (bool) =>
+  //Funções para gerenciar login
+  const handleLogin = (bool) =>
   {
     setLogin(bool);
   }
+
+  const handleAdm = (bool) =>{
+    setAdm(bool)
+  }
+
+  const handleUser = (usr) => {
+    setUser(usr);
+  }
+  
+  
 
 
   const [cart, setCart] = useState([]);
@@ -78,21 +95,20 @@ function App() {
   
   return (
         <div className="App">
-          <TopBar login={login} handleLogout={handleLogout}></TopBar>
+          <TopBar login={login} handleLogout={handleLogout} user={user} adm={adm}></TopBar>
           <NavBar></NavBar>
 
           <Routes>
             <Route path='/bookpage/:id' element={<BookPage bookList={bookList} addItem={addItem}/>} />
             <Route path='/payment' element={<Payment cart={cart} clearCart={clearCart} />} />
             <Route path='/cart' element={<CartPage cart={cart} deleteItem={deleteItem} clearCart={clearCart}/>} />
-            <Route path='/sign-in' element={<SignIn users={users} doLogin={doLogin}/>} />
-            <Route path='/sign-up' element={<SignUp users={users} />} />
+            <Route path='/sign-in' element={<SignIn login={login} adm={adm} user={user} handleLogin={handleLogin} handleAdm={handleAdm} handleUser={handleUser}/>} />
+            <Route path='/sign-up' element={<SignUp login={login} handleLogin={handleLogin} handleAdm={handleAdm} handleUser={handleUser} />} />
             <Route path='/admin/edit/admins' element={<EditAdmins users={users} />} />
             <Route path='/admin/edit/clients' element={<EditClients users={users} />} />
             <Route path='/admin/edit/products' element={<EditProducts bookList={bookList} />} />
             <Route path='/admin' element={<Admin />} />
-            <Route path='/perfil' element={<Perfil user={login === true ? JSON.parse(localStorage.getItem('user')) : null} />} />
-
+            <Route path='/perfil' element={<Perfil user={user} />} />
             <Route exact path="/" element={<Home bookList={bookList}/>} />
             <Route path="*" element={
               <div> Caminho nao existe</div>

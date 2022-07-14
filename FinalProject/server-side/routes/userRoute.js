@@ -35,11 +35,35 @@ router.post('/api/addUser', (req, res) => {
 
 // Consulta usários (HTTP GET)
 
-router.get('/api/getUser/:name', (req, res) => {
+router.get('/api/getUser/', (req, res) => { // Pega todos os usuários do banco
+    
+    User.find({})
+    .then(doc => { //OBS: doc é um array de objetos e pode devolver vários documentos com mesmo nome
+        res.send(doc);
+    })
+    .catch(err => {
+        res.send(err);
+    })
+})
+router.get('/api/getUser/:name', (req, res) => { // Pega usuario baseado no nome
     let name = req.params.name;
     
     User.find({name:name})
     .then(doc => { //OBS: doc é um array de objetos e pode devolver vários documentos com mesmo nome
+        res.send(doc);
+    })
+    .catch(err => {
+        res.send(err);
+    })
+})
+
+router.post('/api/login', (req, res) => { // Pega usuario baseado no nome
+    let userName = req.body.userName;
+    let password = req.body.password;
+    
+    User.find({userName:userName, password: password})
+    .then(doc => { //OBS: doc é um array de objetos e pode devolver vários documentos com mesmo nome
+        console.log(req.body)
         res.send(doc);
     })
     .catch(err => {

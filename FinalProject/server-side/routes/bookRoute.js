@@ -36,7 +36,7 @@ router.post('/api/addBook', (req, res) => {
 
 // Consulta livros (HTTP - GET)
 
-router.get('/api/getBook/', (req, res) => {
+router.get('/api/getBook/', (req, res) => { // Pega todos os livros do banco
 
     Book.find({})
     .then(doc => {
@@ -46,7 +46,7 @@ router.get('/api/getBook/', (req, res) => {
         res.send(err)
     })
 })
-router.get('/api/getBook/:title', (req, res) => {
+router.get('/api/getBook/:title', (req, res) => { // Pega livro baseado no nome
     let title = req.params.title;
 
     Book.find({title})
