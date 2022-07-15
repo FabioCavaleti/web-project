@@ -42,9 +42,8 @@ const ProductForm = () => {
             inv_qtd:Number(inv_qtd), 
             sold_qtd:0
         } 
-
-
-        BookApi.addBook(bookObj)
+        
+        BookApi.addBook(bookObj);
     }
 
 

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const CartPage = ({cart, setCart, deleteItem, clearCart}) => {
 
     
-    
+    console.log(cart)
     const handleClickBuy = () => {
     }
 
@@ -17,7 +17,7 @@ const CartPage = ({cart, setCart, deleteItem, clearCart}) => {
         
         let sum = 0;
         cart.map((item) =>{
-            sum += parseFloat(item.valor)
+            sum += parseFloat(item.price)
         })
         
         return parseFloat(sum).toFixed(2);
@@ -36,18 +36,18 @@ const CartPage = ({cart, setCart, deleteItem, clearCart}) => {
             <h1>Carrinho</h1>
             <ul className='cart-list'>
                 {cart.map(item =>
-                    <li className='cart-item' key={item.id}>
+                    <li className='cart-item' key={item._id}>
                         <div className='left'>
-                            <Link to={`/bookpage/${item.id}`}>
-                                <img className='cart-product-img' alt='foto-do-livro' src={foto}/>
+                            <Link to={`/bookpage/${item._id}`}>
+                                <img className='cart-product-img' alt='foto-do-livro' src={item.img}/>
                             </Link>
                            <span>
-                             {`${item.titulo} `}
+                             {`${item.title} `}
                             </span>
                         </div>
                         <div className='right'>
                             <span>
-                            {`R$${item.valor}`}
+                            {`R$${item.price}`}
                             </span>
                             <button className='delete-item-btn' onClick={() =>{deleteItem(item)}}>X</button>
 

@@ -39,6 +39,7 @@ function App() {
     orderByColumn
   } = useContext(Context);
 
+
   useEffect(() => {
     filterBooks();
   }, [filterByCategory, filterByGenre, orderByColumn, filterByPrice])
@@ -90,9 +91,11 @@ function App() {
 
   const deleteItem = (item) =>
   {
-    let filteredCart = cart.filter(i => i.id !== item.id)
+    let filteredCart = cart.filter(i => i._id !== item._id)
     setCart(filteredCart);
   }
+
+  // Teste
   
   return (
         <div className="App">

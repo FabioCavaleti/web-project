@@ -16,7 +16,7 @@
      /* flex: 0 0 40%;  */
 }
 .book-img img{
-    width: 350px;
+    width: 320px;
 }
 
 .payment{
@@ -76,7 +76,7 @@
     border: 1px solid;
 }
 
-.btn:hover{
+.hover:hover{
     background-color: rgb(77, 116, 250, 1.0);
     cursor: pointer;
 }
