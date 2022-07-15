@@ -8,6 +8,7 @@ export default function ChoseGenre () {
     ["Fantasia", "Fantasy"],
     ["Aventura", "Adventure"],
     ["Terror", "Horror"],
+    ["Suspense", "Thriller"],
     ["Romance", "Novel"],
     ["Auto Ajuda", "Self Help"],
     ["Política", "Politics"],
@@ -40,7 +41,7 @@ export default function ChoseGenre () {
               name="ChoseGenre"
               type="radio"
               id={el[1]}
-              value={el[1]}
+              value={el[0]}
               onChange={ ({ target }) => setGenreInput(target.value) }
             />
             {el[0]}
