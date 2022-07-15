@@ -43,17 +43,6 @@ function Provider({ children }) {
 
   const categorySwitch = (categoryFilter, filteredArr) => {
     switch (categoryFilter) {
-      case 'Most sold':
-        const sortBySoldQdt = filteredArr.sort((a,b) => {
-          if (a.sold_qtd > b.sold_qtd) {
-            return 1;
-          }
-          if (a.sold_qtd < b.sold_qtd) {
-            return 0;
-          }
-          return 0;
-        })
-        return sortBySoldQdt.slice(0,6);
       case 'All':
         return filteredArr;
       default:
