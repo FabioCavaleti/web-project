@@ -21,7 +21,7 @@ const Home = ({bookList}) => {
         <BooksWrapper filterArea={filterArea}>
             <ul className='books-container'>
               {bookList.map(book =>
-                <li className='book-item' key={book.id}>
+                <li className='book-item' key={book._id}>
                   <Card book={book} ></Card>
                 </li>
               )}

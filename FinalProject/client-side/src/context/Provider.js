@@ -88,7 +88,6 @@ function Provider({ children }) {
       return 0;
     });
     newList1.forEach((el) => newList2.push(el));
-    console.log(newList2);
     return newList2;
   }
   
@@ -133,9 +132,9 @@ function Provider({ children }) {
     BooksApi.getBooks().then((Arr) => setData(Arr));
   }, []);
 
-  useEffect(() => {
-    console.log(bookList);
-  }, [bookList])
+  // useEffect(() => {
+  //   console.log(bookList);
+  // }, [bookList])
 
   return (
     <Context.Provider
