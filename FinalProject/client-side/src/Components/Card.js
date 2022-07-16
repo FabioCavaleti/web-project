@@ -1,8 +1,10 @@
 import React from 'react';
 import './Card.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const Card = ({book}) => {
+    const navigate = useNavigate();
     const {title, _id, price, author, img} = book
     return ( 
         <div className='card'>
@@ -13,7 +15,7 @@ const Card = ({book}) => {
             <div className='price-value'>
                 <strong>{`${price}`}</strong>
             </div>
-            <button className='saiba-mais-btn'><Link to={`/bookpage/${_id}`}>SAIBA MAIS</Link></button>
+            <button onClick={ () => {navigate(`/bookpage/${_id}`)}} className='saiba-mais-btn'>SAIBA MAIS</button>
 
             
         </div>

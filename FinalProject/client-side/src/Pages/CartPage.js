@@ -3,10 +3,9 @@ import './CartPage.css'
 import foto from '../Assets/livroGenerico.jpg'
 import { Link } from 'react-router-dom';
 
-const CartPage = ({cart, setCart, deleteItem, clearCart}) => {
+const CartPage = ({cart, setCart, deleteItem, clearCart, addQuantity, reduceQuantity}) => {
 
     
-    console.log(cart)
     const handleClickBuy = () => {
     }
 
@@ -17,11 +16,12 @@ const CartPage = ({cart, setCart, deleteItem, clearCart}) => {
         
         let sum = 0;
         cart.map((item) =>{
-            sum += parseFloat(item.price)
+            sum += parseFloat(item.qtd * item.price)
         })
         
         return parseFloat(sum).toFixed(2);
     }
+
     
     const [total, setTotal] = useState(calculaTot())
 
@@ -44,6 +44,12 @@ const CartPage = ({cart, setCart, deleteItem, clearCart}) => {
                            <span>
                              {`${item.title} `}
                             </span>
+                        </div>
+                        <div className='qtd'>
+                            <button onClick={() =>{reduceQuantity(item)}}>-</button>
+                            {`${item.qtd}`}
+                            <button onClick={() => {addQuantity(item)}}>+</button>
+
                         </div>
                         <div className='right'>
                             <span>

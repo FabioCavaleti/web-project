@@ -38,3 +38,7 @@
     width: 100%;
     font-weight: bold;
 }
+
+.saiba-mais-btn:hover{
+    cursor: pointer;
+}

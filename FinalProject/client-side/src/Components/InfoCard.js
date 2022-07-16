@@ -9,7 +9,7 @@ const InfoCard = ({book, addItem}) => {
 
     const handleAddClick = () => {
         addItem(book)
-        window.alert("Item adicionado ao carrinho")
+        
     }
 
     const handleBuyClick = () => {
