@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {useState} from 'react'
 import * as BookApi from '../helpers/BookApi'
 import '../Pages/Edit.css'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
+import Context from '../context/Context';
 
 
 const ProductForm = () => {
@@ -23,6 +24,7 @@ const ProductForm = () => {
     const[price,setPrice] = useState()
     const[inv_qtd,setInv_qtd] = useState()
 
+    const { AttBooklist } = useContext(Context);
 
 
     const addNewBook = (e) => {
@@ -43,7 +45,7 @@ const ProductForm = () => {
             sold_qtd:0
         } 
         
-        BookApi.addBook(bookObj);
+        BookApi.addBook(bookObj).then(AttBooklist());
     }
 
 

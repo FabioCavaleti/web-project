@@ -136,6 +136,11 @@ function Provider({ children }) {
   //   console.log(bookList);
   // }, [bookList])
 
+  const AttBookList = () => {
+    BooksApi.getBooks().then((Arr) => setBookList(Arr));
+    BooksApi.getBooks().then((Arr) => setData(Arr));
+  }
+
   const [bookObj,setBookObj] = useState({});
 
 
@@ -161,6 +166,7 @@ function Provider({ children }) {
         filterByPrice,
         setFilterByPrice,
         excludeFilters,
+        AttBookList,
       } }
     >
       {children}

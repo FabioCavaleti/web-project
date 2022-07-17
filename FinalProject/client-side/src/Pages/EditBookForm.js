@@ -7,11 +7,9 @@ import {useState,useContext} from 'react'
 import Context from '../context/Context'
 
 //Bootstrap
-import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row'; 
 
 import '../Pages/Edit.css'
@@ -22,6 +20,7 @@ const EditBookForm = () =>{
 
     let {bookObj} = useContext(Context);
 
+    const { AttBookList } = useContext(Context)
 
     const [title, setTitle] = useState(bookObj.title)
     const [author, setAuthor] = useState(bookObj.author)
@@ -67,7 +66,7 @@ const EditBookForm = () =>{
                 inv_qtd:Number(inv_qtd), 
                 sold_qtd:bookObj.sold_qtd,
             }
-        BookApi.attBook(bookObj)
+        BookApi.attBook(bookObj).then(AttBookList())
     }
      
 
