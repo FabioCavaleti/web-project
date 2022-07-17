@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { validate } from 'uuid';
 import * as yup from 'yup';
 import {Navigate, useNavigate} from 'react-router-dom'
 import * as BookApi from '../helpers/BookApi'
+import Context from '../context/Context';
 
 
 const PaymentForm = (props) => {
@@ -22,6 +23,9 @@ const PaymentForm = (props) => {
     const [bornDate, setBornDate] = useState("")
     const [email, setEmail] = useState("")
     const [address, setAddress] = useState("");
+
+
+    const { AttBookList } = useContext(Context);
     
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -36,7 +40,7 @@ const PaymentForm = (props) => {
                 inv_qtd: item.inv_qtd - item.qtd
             }
             
-            BookApi.attBook(obj);
+            BookApi.attBook(obj).then(AttBookList());
 
             // Falta atualizar booklist com os novos dados do banco
             

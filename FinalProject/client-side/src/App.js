@@ -25,7 +25,6 @@ import Perfil from './Pages/Pefil';
 import EditProducts from './Pages/EditProducts';
 import Context from './context/Context';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   // Lista de livros disponiveis e itens do carrinho
