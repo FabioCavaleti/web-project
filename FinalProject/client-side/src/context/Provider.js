@@ -166,6 +166,8 @@ function Provider({ children }) {
         filterByPrice,
         setFilterByPrice,
         excludeFilters,
+        bookObj,
+        setBookObj,
         AttBookList,
       } }
     >

@@ -221,9 +221,6 @@ const EditBookForm = () =>{
             
             
         
-        </div> 
-        <div className="teste">
-            oi
         </div>
         </>  
     )
