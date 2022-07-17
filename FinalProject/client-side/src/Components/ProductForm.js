@@ -24,7 +24,7 @@ const ProductForm = () => {
     const[price,setPrice] = useState()
     const[inv_qtd,setInv_qtd] = useState()
 
-    const { AttBooklist } = useContext(Context);
+    const { AttBookList } = useContext(Context);
 
 
     const addNewBook = (e) => {
@@ -45,7 +45,9 @@ const ProductForm = () => {
             sold_qtd:0
         } 
         
-        BookApi.addBook(bookObj).then(AttBooklist());
+        console.log(bookObj);
+
+        BookApi.addBook(bookObj).then(AttBookList());
     }
 
 
@@ -79,8 +81,6 @@ const ProductForm = () => {
                     <label>Foto da Capa:</label><input type='text' placeholder='Coloque a url da capa do livro' onChange={(e) => setImg(e.target.value)}></input><br></br>
                     <label>Preço:</label><input type='number' placeholder='Digite o preço do livro' onChange={(e) => setPrice(e.target.value)}></input><br></br>
                     <label>Quantidade em estoque:</label><input type='number' placeholder='Selecione a quantidade de livros em estoque' onChange={(e) => setInv_qtd(e.target.value)}></input><br></br>
-
-                    <input type='submit' value='Salvar Livro'></input>
                 </form>
             </div>
             </Modal.Body>
@@ -88,7 +88,7 @@ const ProductForm = () => {
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleClose}>
+                <Button variant="primary" onClick={addNewBook}>
                     Save Changes
                 </Button>
             </Modal.Footer>
