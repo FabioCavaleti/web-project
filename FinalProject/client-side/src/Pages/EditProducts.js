@@ -36,7 +36,7 @@ const EditProducts = (props) => {
         <h1>Livros</h1>
         <ul className='edit-list'>
             {props.bookList.map((book,index) => (
-            <li key={book.id}>{`Nome: ${book.title}`}
+            <li key={book._id}>{`Nome: ${book.title}`}
                 <div className='buttons'>                    
                     <Link to='/editBook'><button id={index} className='edit-button no-btn-style' onClick={handleClick}>Editar</button></Link>
                     <button className='exclude-button no-btn-style' onClick={deleteBook(book.title)}>Excluir</button>
