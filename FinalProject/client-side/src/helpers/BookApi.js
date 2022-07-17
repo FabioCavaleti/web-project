@@ -41,8 +41,13 @@ export const attBook = async (bookObj) => {
   const url = `/api/attBook/${bookObj.title}`;
   const response = await fetch(url, {
     method: 'PUT',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(bookObj),
   });
   const data = await response.json();
+  console.log(data)
   return data;
 }

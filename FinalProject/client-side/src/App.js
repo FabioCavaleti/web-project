@@ -36,12 +36,14 @@ function App() {
     filterByCategory,
     filterBooks,
     filterByGenre,
+    filterByPrice,
     orderByColumn
   } = useContext(Context);
 
+
   useEffect(() => {
     filterBooks();
-  }, [filterByCategory, filterByGenre, orderByColumn])
+  }, [filterByCategory, filterByGenre, orderByColumn, filterByPrice])
 
   const navigate = useNavigate();
 
@@ -81,7 +83,55 @@ function App() {
   
   /*GERENCIAMENTO DO CARRINHO */
   const addItem = (item) => {
-    setCart([...cart, item]);
+    if(cart.indexOf(item) === -1)
+    {
+      console.log(item)
+      if(item.inv_qtd > 0)
+      {
+        let cartItem = item;
+        cartItem.qtd = 1;
+        setCart([...cart, cartItem]);
+        window.alert("Item adicionado ao carrinho")
+
+      }
+      else
+      {
+        window.alert('Produto fora de estoque')
+      }
+    }
+    else
+    {
+      window.alert('Produto ja adicionado no carrinho')
+    }
+  }
+
+  const reduceQuantity = (item) =>
+  {
+    if(item.qtd > 1 )
+    {
+      item.qtd -= 1;
+      let filteredCart = cart.filter(i => i._id !== item._id)
+      filteredCart.push(item);
+      setCart(filteredCart);
+    }
+    else{
+      deleteItem(item);
+    }
+  }
+
+  const addQuantity = (item) => {
+    if( item.qtd < item.inv_qtd)
+    {
+      item.qtd += 1;
+      let filteredCart = cart.filter(i => i._id !== item._id)
+      filteredCart.push(item);
+      setCart(filteredCart);
+
+    }
+    else
+    {
+      window.alert("Não é possível adicionar mais deste produto ao carrinho")
+    }
   }
 
   const clearCart = () =>{
@@ -90,9 +140,11 @@ function App() {
 
   const deleteItem = (item) =>
   {
-    let filteredCart = cart.filter(i => i.id !== item.id)
+    let filteredCart = cart.filter(i => i._id !== item._id)
     setCart(filteredCart);
   }
+
+  // Teste
   
   return (
         <div className="App">
@@ -100,9 +152,9 @@ function App() {
           <NavBar></NavBar>
 
           <Routes>
-            <Route path='/bookpage/:id' element={<BookPage bookList={bookList} addItem={addItem}/>} />
+            <Route path='/bookpage/:id' element={<BookPage bookList={bookList} addItem={addItem} />} />
             <Route path='/payment' element={<Payment cart={cart} clearCart={clearCart} />} />
-            <Route path='/cart' element={<CartPage cart={cart} deleteItem={deleteItem} clearCart={clearCart}/>} />
+            <Route path='/cart' element={<CartPage login={login} cart={cart} deleteItem={deleteItem} clearCart={clearCart} addQuantity={addQuantity} reduceQuantity={reduceQuantity}/>} />
             <Route path='/sign-in' element={<SignIn login={login} adm={adm} user={user} handleLogin={handleLogin} handleAdm={handleAdm} handleUser={handleUser}/>} />
             <Route path='/sign-up' element={<SignUp login={login} handleLogin={handleLogin} handleAdm={handleAdm} handleUser={handleUser} />} />
             <Route path='/admin/edit/admins' element={<EditAdmins users={users} />} />
@@ -117,7 +169,7 @@ function App() {
               <div> Caminho nao existe</div>
             } />
           </Routes>
-          <Footer></Footer>
+          {/* <Footer></Footer> */}
         </div>
   );
 }

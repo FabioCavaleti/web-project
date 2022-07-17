@@ -1,15 +1,15 @@
 import React from 'react';
 import './InfoCard.css'
-import capa from '../Assets/livroGenerico.jpg'
 import { useNavigate } from 'react-router-dom';
 
 const InfoCard = ({book, addItem}) => {
 
     const navigate = useNavigate();
 
+
     const handleAddClick = () => {
         addItem(book)
-        window.alert("Item adicionado ao carrinho")
+        
     }
 
     const handleBuyClick = () => {
@@ -23,15 +23,15 @@ const InfoCard = ({book, addItem}) => {
             <div className='container-fluid'>
                 <div className='row'>
                     <div className='book-img'>
-                        <img src={capa} alt='capa-do-livro'></img>
+                        <img src={book.img} alt='capa-do-livro'></img>
                     </div>
                     <div className='payment'>
-                        <h1 className='book-title'>{book.titulo}</h1>
-                        <h3 className='book-subtitle'>Autor: {book.autores} | Editora: {book.editora}</h3>
-                        <h2 className='book-value'>R${book.valor}</h2>
-                        <button onClick={handleAddClick} className='add-chart-btn btn'>Adicionar ao carrinho</button>
+                        <h1 className='book-title'>{book.title}</h1>
+                        <h3 className='book-subtitle'>Autor: {book.author} | Editora: {book.publisher}</h3>
+                        <h2 className='book-value'>R${book.price}</h2>
+                        <button onClick={handleAddClick} className='add-chart-btn hover'>Adicionar ao carrinho</button>
                         <br />
-                        <button onClick={handleBuyClick} className='buy-btn btn'>Comprar</button>
+                        <button onClick={handleBuyClick} className='buy-btn hover'>Comprar</button>
 
                     </div>
                 </div>

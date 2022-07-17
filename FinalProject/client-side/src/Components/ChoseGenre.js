@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Context from '../context/Context';
 
 export default function ChoseGenre () {
@@ -8,6 +8,7 @@ export default function ChoseGenre () {
     ["Fantasia", "Fantasy"],
     ["Aventura", "Adventure"],
     ["Terror", "Horror"],
+    ["Suspense", "Thriller"],
     ["Romance", "Novel"],
     ["Auto Ajuda", "Self Help"],
     ["Política", "Politics"],
@@ -22,17 +23,25 @@ export default function ChoseGenre () {
     })
   }
 
+  const [clicked, setClicked] = useState(false);
+
+  const handleClick = () => {
+    setClicked(!clicked);
+  }
+
   return (
     <div className='chose-filters'>
-      <button>Gênero</button>
+      <button
+        onClick={handleClick}
+      >Gênero</button>
       {
-        genreArr.map((el, index) => (
+        clicked && genreArr.map((el, index) => (
           <label htmlFor={el[1]} key={index}>
             <input
-              name="ChosePrice"
+              name="ChoseGenre"
               type="radio"
               id={el[1]}
-              value={el[1]}
+              value={el[0]}
               onChange={ ({ target }) => setGenreInput(target.value) }
             />
             {el[0]}

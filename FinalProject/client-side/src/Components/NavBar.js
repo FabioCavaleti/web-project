@@ -5,11 +5,11 @@ import './NavBar.css';
 const NavBar = (props) => {
     const categoriesArr = 
     [
-        ["Mais vendidos", "Most sold"],
-        ["Lançamentos", "Releases"],
+        ["Mais vendidos", "Most Sold"],
+        ["Lançamentos", "Realease"],
         ["Todos", "All"],
         ["Clássicos", "Classic"],
-        ["HQs e Mangas", "HQs"],
+        ["HQs e Mangas", "HQs e Mangas"],
         ["Literatura Infantojuvenil", "Childish"],
         ["Literatura Estrangeira", "Foreign"],
         ["Literatura Nacional", "Nacional"],

@@ -47,6 +47,10 @@
     border: 1px solid;
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .delete-item-btn{
     color: red;
     text-decoration: none;
@@ -92,5 +96,21 @@
     padding: 20px;
     font-size: 30px;
     font-weight: 700;
+}
+
+.qtd{
+    display: flex;
+    align-items: center;    
+}
+.qtd button{
+    width: 20px;
+    height: 20px;
+    border-width: 1px;
+    margin: 0 5px;
+    border-radius: 10px; 
+}
+
+.qtd button:hover{
+    cursor: pointer;
 }
 

@@ -1,3 +1,18 @@
+.filter-container{
+  margin-top: 20px;
+  display: inline-block;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: aliceblue;
+  height: fit-content;
+  
+}
+
+.filter-container button {
+  margin: 5px;
+  text-align: center;
+}
+
 .home-wrapper {
   display: flex;
   align-content: center;
@@ -12,4 +27,5 @@
 .chose-filters {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }

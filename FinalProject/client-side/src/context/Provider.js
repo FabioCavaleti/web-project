@@ -14,6 +14,10 @@ function Provider({ children }) {
     categoryFilter: '',
   });
 
+  const [filterByPrice, setFilterByPrice]= useState({
+    priceFilter: '',
+  })
+
   const [filterByGenre, setFilterByGenre] = useState({
     genreFilter: '',
   });
@@ -22,25 +26,44 @@ function Provider({ children }) {
     order: {column: '', sort: ''},
   })
 
+  const excludeFilters = () => {
+    setFilterByCategory({
+      categoryFilter: '',
+    })
+    setFilterByPrice({
+      priceFilter: '',
+    })
+    setFilterByGenre({
+      genreFilter: '',
+    })
+    setOrderByColumn({
+      order: {column: '', sort: ''},
+    })
+  }
+
   const categorySwitch = (categoryFilter, filteredArr) => {
     switch (categoryFilter) {
-      case 'Most sold':
-        const sortBySoldQdt = filteredArr.sort((a,b) => {
-          if (a.sold_qtd > b.sold_qtd) {
-            return 1;
-          }
-          if (a.sold_qtd < b.sold_qtd) {
-            return 0;
-          }
-          return 0;
-        })
-        return sortBySoldQdt.slice(0,6);
       case 'All':
         return filteredArr;
       default:
         return filteredArr.filter((book) => book.category.includes(categoryFilter));
     }
   }
+  
+  const priceSwitch = (priceFilter, Arr) => {
+    switch (priceFilter) {
+      case '30':
+        return Arr.filter((el) => el.price <= 30);
+      case '30 - 50':
+        return Arr.filter((el) => el.price >= 30 && el.price <= 50);
+      case '50 - 80':
+        return Arr.filter((el) => el.price >= 50 && el.price <= 80);
+      case '80 - 140':
+        return Arr.filter((el) => el.price >= 80 && el.price <= 140);
+      default:
+        return Arr.filter((el) => el.price >= 140);
+    }
+  };
 
   const sorting = (Arr, sort) => {
     const MENOS_UM = -1;
@@ -65,9 +88,9 @@ function Provider({ children }) {
       return 0;
     });
     newList1.forEach((el) => newList2.push(el));
-    console.log(newList2);
     return newList2;
   }
+  
 
   const orderSwitch = (order, filteredArr) => {
     const { column, sort } = order;
@@ -78,16 +101,21 @@ function Provider({ children }) {
     }
   };
 
+
   const filterBooks = () => {
     const { categoryFilter } = filterByCategory;
     const { genreFilter } = filterByGenre;
+    const { priceFilter } = filterByPrice;
     const { order } = orderByColumn;
     let filteredArr = data;
     if (categoryFilter) {
-      filteredArr = categorySwitch(categoryFilter, filteredArr)
+      filteredArr = categorySwitch(categoryFilter, filteredArr);
+    }
+    if (priceFilter) {
+      filteredArr = priceSwitch(priceFilter, filteredArr);
     }
     if (genreFilter) {
-      filteredArr = filteredArr.filter((el) => el.genre.includes(genreFilter))
+      filteredArr = filteredArr.filter((el) => el.genre.includes(genreFilter));
     }
     if (order.column) {
       filteredArr = orderSwitch(order, filteredArr);
@@ -104,9 +132,9 @@ function Provider({ children }) {
     BooksApi.getBooks().then((Arr) => setData(Arr));
   }, []);
 
-  useEffect(() => {
-    console.log(bookList);
-  }, [bookList])
+  // useEffect(() => {
+  //   console.log(bookList);
+  // }, [bookList])
 
   const [bookObj,setBookObj] = useState({});
 
@@ -130,8 +158,9 @@ function Provider({ children }) {
         setFilterByGenre,
         orderByColumn,
         setOrderByColumn,
-        bookObj,
-        setBookObj,
+        filterByPrice,
+        setFilterByPrice,
+        excludeFilters,
       } }
     >
       {children}

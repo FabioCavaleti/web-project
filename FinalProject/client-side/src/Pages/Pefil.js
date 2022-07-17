@@ -13,7 +13,7 @@ const Perfil = (props) => {
 
 
     let userInfo = createUserInfo(Object.keys(props.user), Object.values(props.user));
-    userInfo = userInfo.filter((item) => item.key !== 'password' && item.key !== 'admin')
+    userInfo = userInfo.filter((item) => item.key !== 'password' && item.key !== 'admin' && item.key !== '_id' && item.key !== "__v")
     console.log(userInfo)
     return ( 
         <div className='container-perfil container-fluid'>

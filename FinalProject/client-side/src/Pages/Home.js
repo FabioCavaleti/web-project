@@ -11,17 +11,19 @@ const Home = ({bookList}) => {
     filterArea
   } = useContext(Context)
 
+  console.log(bookList)
+
   return ( 
       <div className='home-wrapper'>
         { filterArea && (
-          <div className='filter-wrapper container'>
+          <div className='filter-wrapper filter-container'>
             <FilterControl/>
           </div>
         )}
         <BooksWrapper filterArea={filterArea}>
             <ul className='books-container'>
               {bookList.map(book =>
-                <li className='book-item' key={book.id}>
+                <li className='book-item' key={book._id}>
                   <Card book={book} ></Card>
                 </li>
               )}

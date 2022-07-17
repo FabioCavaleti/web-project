@@ -12,7 +12,7 @@ const Payment = (props) => {
         
         let sum = 0;
         props.cart.map((item) =>{
-            sum += parseFloat(item.valor)
+            sum += parseFloat(item.price)
         })
         
         return parseFloat(sum).toFixed(2);

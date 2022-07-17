@@ -75,7 +75,7 @@ Os mockups, bem como o diagrama de navegação pode ser encontrado no nosso [fig
 
 ## Comentários sobre o código
 ---
-O código está dentro do diretório entrega02-clientside
+O código está dentro do diretório FinalProject
 ## Plano de teste
 ---
 Nosso plano de teste é apenas navegar pelo site. É possivel se cadastrar, criando uma nova conta sem direitos de administradores. Para testar as páginas de admnistrador é necessário fazer login em uma conta de admnistrador. Utilize a conta padrão (login: admin, senha: admin). Observe que nosso site apresenta um problema nesse  quesito, por conta disso é necessário atualizar a página para que se possa ver a página de administrador
@@ -83,13 +83,12 @@ Nosso plano de teste é apenas navegar pelo site. É possivel se cadastrar, cria
 ---
 ## Build
 ---
-Clone o repositório. Com o terminal, entre no diretório '/web-project/entrega02-clientside'. Após isso, rode os comandos para rodar código react com npm:
-- npm install
-- npm start
+Clone o repositório. Com o terminal, entre no diretório '/web-project/FinalProject/server-side'. Após isso, rode os comandos para rodar código react com npm:
+- npm install (esse comando automaticamente da npm install na parte do cliente também)
+- npm run start_dev (esse comando inicia o server e o client no mesmo terminal)
 ## Problemas
 --- 
-- Estamos com problemas para que a página de administrador apareça ao logar com uma conta de admin, dessa forma, para ela aparecer é necerrário atualizar a página (F5).
-- Ainda não conseguimos terminar nossa funcionalidade extra que é um filtro de livros
+- Ainda não finalizamos todas as funcionalidades, pode haver algumas páginas com design estranho ou algumas funcionalidades funcionando pela metade.
 ## Comentários
 ---
 

@@ -78,6 +78,7 @@ router.put('/api/attBook/:title', (req, res) =>{
     let title = req.params.title;
     Book.findOneAndUpdate({title}, req.body)
     .then(doc => {
+        console.log("DOC")
         console.log(doc)
         res.send("OK!!");
     })
