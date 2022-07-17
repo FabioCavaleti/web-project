@@ -11,7 +11,6 @@ export const getLogin = async (userObj) => {
         body: JSON.stringify(userObj)
     });
     const data = await response.json();
-    console.log(data)
     return data;
   }
 

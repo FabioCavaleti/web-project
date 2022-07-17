@@ -11,10 +11,12 @@ const Home = ({bookList}) => {
     filterArea
   } = useContext(Context)
 
+  console.log(bookList)
+
   return ( 
       <div className='home-wrapper'>
         { filterArea && (
-          <div className='filter-wrapper container'>
+          <div className='filter-wrapper filter-container'>
             <FilterControl/>
           </div>
         )}

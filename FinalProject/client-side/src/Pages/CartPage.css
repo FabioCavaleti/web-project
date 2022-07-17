@@ -47,6 +47,10 @@
     border: 1px solid;
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .delete-item-btn{
     color: red;
     text-decoration: none;

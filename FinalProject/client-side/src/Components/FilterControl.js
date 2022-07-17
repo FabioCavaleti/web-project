@@ -19,9 +19,14 @@ export default function FilterControl () {
       <ChosePrice/>
       <ChoseGenre/>
       <ChoseSort/>
-      <button
-        onClick={handleClick}
-      >Limpar Filtros</button>
+      <div className='chose-filters'>
+        <button
+          className='clear-filter'
+          onClick={handleClick}
+        >
+          Limpar Filtros
+        </button>
+      </div>
     </div>
   )
 }

@@ -153,7 +153,7 @@ function App() {
           <Routes>
             <Route path='/bookpage/:id' element={<BookPage bookList={bookList} addItem={addItem} />} />
             <Route path='/payment' element={<Payment cart={cart} clearCart={clearCart} />} />
-            <Route path='/cart' element={<CartPage cart={cart} deleteItem={deleteItem} clearCart={clearCart} addQuantity={addQuantity} reduceQuantity={reduceQuantity}/>} />
+            <Route path='/cart' element={<CartPage login={login} cart={cart} deleteItem={deleteItem} clearCart={clearCart} addQuantity={addQuantity} reduceQuantity={reduceQuantity}/>} />
             <Route path='/sign-in' element={<SignIn login={login} adm={adm} user={user} handleLogin={handleLogin} handleAdm={handleAdm} handleUser={handleUser}/>} />
             <Route path='/sign-up' element={<SignUp login={login} handleLogin={handleLogin} handleAdm={handleAdm} handleUser={handleUser} />} />
             <Route path='/admin/edit/admins' element={<EditAdmins users={users} />} />
@@ -166,7 +166,7 @@ function App() {
               <div> Caminho nao existe</div>
             } />
           </Routes>
-          <Footer></Footer>
+          {/* <Footer></Footer> */}
         </div>
   );
 }

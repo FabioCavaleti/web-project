@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './CartPage.css'
 import foto from '../Assets/livroGenerico.jpg'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const CartPage = ({cart, setCart, deleteItem, clearCart, addQuantity, reduceQuantity}) => {
+const CartPage = ({cart, login, deleteItem, clearCart, addQuantity, reduceQuantity}) => {
 
     
-    const handleClickBuy = () => {
-    }
-
     const handleClickClear = () =>{
         clearCart();
     }
@@ -30,7 +27,27 @@ const CartPage = ({cart, setCart, deleteItem, clearCart, addQuantity, reduceQuan
     }, [cart])
 
 
+    const navigate = useNavigate();
 
+    
+    const handleClickBuy = () => {
+        if(total > 0.0)
+        {
+            if(login == true)
+            {
+                navigate('/payment')
+            }
+            else
+            {
+                navigate('/sign-in')
+            }
+        }
+        else
+        {
+            window.alert("O carrinho está vazio!!")
+        }
+    }
+    
     return ( 
         <div className='cart-container'>
             <h1>Carrinho</h1>
@@ -66,11 +83,9 @@ const CartPage = ({cart, setCart, deleteItem, clearCart, addQuantity, reduceQuan
                 <span>{total > 0.0 ? `Total: R$${total}` : `o carrinho está vazio`}</span>
             </div>
 
-                <Link to='/payment'>
-                    <button onClick={handleClickBuy} className='buy-cart-btn btn'>Finalizar Compra</button>
-                </Link>
-                        <br />
-                        <button onClick={handleClickClear} className='clear-cart-btn btn'>Limpar carrinho</button>
+                <button onClick={handleClickBuy} className='buy-cart-btn btn'>Finalizar Compra</button>
+                <br />
+                <button onClick={handleClickClear} className='clear-cart-btn btn'>Limpar carrinho</button>
         </div>
      );
 }

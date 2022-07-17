@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { validate } from 'uuid';
 import * as yup from 'yup';
 import {Navigate, useNavigate} from 'react-router-dom'
+import * as BookApi from '../helpers/BookApi'
 
 
 const PaymentForm = (props) => {
@@ -27,11 +28,23 @@ const PaymentForm = (props) => {
 
         //VALIDAR DADOS
 
-        window.alert("Compra realizada com sucesso!!")
-        const paymentData = {name,userId,bornDate,email, card, address} // Junta os dados em um unico obj
-        console.log(paymentData)
+        //const paymentData = {name,userId,bornDate,email, card, address}
+        props.cart.map(item => {
+            
+            let obj = {
+                title: item.title,
+                inv_qtd: item.inv_qtd - item.qtd
+            }
+            
+            BookApi.attBook(obj);
 
+            // Falta atualizar booklist com os novos dados do banco
+            
+            
+        })
+        
         props.clearCart();
+        window.alert("Compra realizada com sucesso!!")
         navigate('/')
         
 
@@ -43,27 +56,27 @@ const PaymentForm = (props) => {
             <form onSubmit={handleSubmit}>
                 <label>
                     Nome:
-                    <input type='text' value={name} onChange={(e) =>{setName(e.target.value)}} />   
+                    <input required type='text' value={name} onChange={(e) =>{setName(e.target.value)}} />   
                 </label>
                 <label>
                     CPF:
-                    <input type='text' value={userId} onChange={(e) =>{setUserId(e.target.value)}} />   
+                    <input required type='text' value={userId} onChange={(e) =>{setUserId(e.target.value)}} />   
                 </label>
                 <label>
                     Data de nascimento:
-                    <input type='date' value={bornDate} onChange={(e) =>{setBornDate(e.target.value)}} />   
+                    <input required type='date' value={bornDate} onChange={(e) =>{setBornDate(e.target.value)}} />   
                 </label>
                 <label>
                     Email:
-                    <input type='email' value={email} onChange={(e) =>{setEmail(e.target.value)}} />   
+                    <input  required type='email' value={email} onChange={(e) =>{setEmail(e.target.value)}} />   
                 </label>
                 <label>
                     Cartao de credito:
-                    <input type='text' value={card} onChange={(e) =>{setCard(e.target.value)}} />
+                    <input  required type='text' value={card} onChange={(e) =>{setCard(e.target.value)}} />
                 </label>
                 <label>
                     Endereço:
-                    <input type='text' value={address} onChange={(e) =>{setAddress(e.target.value)}} />
+                    <input required type='text' value={address} onChange={(e) =>{setAddress(e.target.value)}} />
                 </label>
                     <input className='payment-submit btn' value='Finalizar a compra' type='submit' />
             </form>
