@@ -20,26 +20,7 @@ const EditBookForm = () =>{
 
     let {bookObj} = useContext(Context);
 
-<<<<<<< HEAD
-    
-    
-
-
-    const [title, setTitle] = useState(/*bookObj.title*/)
-    const [author, setAuthor] = useState(/*bookObj.author*/)
-    const [edition, setEdition] = useState(/*bookObj.edition*/)
-    const[publisher, setPublisher] = useState(/*bookObj.publisher*/)
-    const[description,setDescription] = useState(/*bookObj.description*/)
-    const[genre,setGenre] = useState(/*bookObj.genre*/)
-    const[category,setCategory] = useState(/*bookObj.category*/)
-    const[img,setImg] = useState(/*bookObj.img*/)
-    const[price,setPrice] = useState(/*bookObj.price*/)
-    const[inv_qtd,setInv_qtd] = useState(/*bookObj.inv_qtd*/)
-
-    
-=======
     const { AttBookList } = useContext(Context)
->>>>>>> 266b6a1b3819514eaebcc5ef2b73c7db1e827935
 
 
 
@@ -58,6 +39,18 @@ const EditBookForm = () =>{
     updateBook();
     setValidated(true);
     };
+
+
+    const [title, setTitle] = useState()
+    const [author, setAuthor] = useState()
+    const [edition, setEdition] = useState()
+    const[publisher, setPublisher] = useState()
+    const[description,setDescription] = useState()
+    const[genre,setGenre] = useState()
+    const[category,setCategory] = useState()
+    const[img,setImg] = useState()
+    const[price,setPrice] = useState()
+    const[inv_qtd,setInv_qtd] = useState()
 
 
   //Atualição do livro
@@ -94,7 +87,7 @@ const EditBookForm = () =>{
         <>
         <div className="page-container">
             <div className="image-container">
-                <img src="https://images-na.ssl-images-amazon.com/images/I/81m1s4wIPML.jpg" className="book-image" alt="bookImage"/>
+                <img src={bookObj.img} className="book-image" alt="bookImage"/>
                 <div>
                     {inputVisible == false ? (
                         <span className="edit-img-link" onClick={(e) => {setInputVisible(true)}}>Editar imagem</span>
@@ -142,7 +135,7 @@ const EditBookForm = () =>{
                             type="text"
                             placeholder="Autor(a)"
                             defaultValue={bookObj.author}
-                            onChange={(e) => setTitle(e.target.author)}
+                            onChange={(e) => setAuthor(e.target.author)}
                         />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
@@ -180,7 +173,7 @@ const EditBookForm = () =>{
 
                     <Form.Group as={Col} md="3" controlId="validationCustom04">
                         <Form.Label>Gênero</Form.Label>
-                        <Form.Select type="text" placeholder="State" required defaultValue={bookObj.genre}>
+                        <Form.Select type="text" placeholder="State" required >
                             <option>Ação</option>
                             <option>Aventura</option>
                             <option>Terror</option>
@@ -193,8 +186,10 @@ const EditBookForm = () =>{
                     </Form.Group>
                     <Form.Group as={Col} md="3" controlId="validationCustom05">
                         <Form.Label>Categoria</Form.Label>
-                        <Form.Select type="text" placeholder="Zip" required defaultValue={bookObj.category}>
+                        <Form.Select type="text" placeholder="Zip" required >
                             <option>Mais vendidos</option>
+                            <option>Lançamentos</option>
+                            
                         </Form.Select>
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid zip.
@@ -222,12 +217,6 @@ const EditBookForm = () =>{
             
             
         
-<<<<<<< HEAD
-        </div> 
-        <div className="teste">
-            
-=======
->>>>>>> 266b6a1b3819514eaebcc5ef2b73c7db1e827935
         </div>
         </>  
     )
