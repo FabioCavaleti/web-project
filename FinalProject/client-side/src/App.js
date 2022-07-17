@@ -25,6 +25,7 @@ import Perfil from './Pages/Pefil';
 import EditProducts from './Pages/EditProducts';
 import Context from './context/Context';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   // Lista de livros disponiveis e itens do carrinho
@@ -110,6 +111,8 @@ function App() {
             <Route path='/admin' element={<Admin />} />
             <Route path='/perfil' element={<Perfil user={user} />} />
             <Route exact path="/" element={<Home bookList={bookList}/>} />
+            <Route path='/editBook' element={<EditBookForm/>}/>   
+
             <Route path="*" element={
               <div> Caminho nao existe</div>
             } />

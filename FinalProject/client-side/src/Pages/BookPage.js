@@ -13,7 +13,7 @@ const BookPage = ({bookList, addItem}) => {
 
    
     useEffect(() =>{
-        setBook(bookList.filter(book => book.id == params.id)[0])
+        setBook(bookList.filter(book => book._id == params.id)[0])
         console.log(book)
     }, [params])
 

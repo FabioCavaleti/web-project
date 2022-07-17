@@ -108,6 +108,10 @@ function Provider({ children }) {
     console.log(bookList);
   }, [bookList])
 
+  const [bookObj,setBookObj] = useState({});
+
+
+
   return (
     <Context.Provider
       value={ {
@@ -126,6 +130,8 @@ function Provider({ children }) {
         setFilterByGenre,
         orderByColumn,
         setOrderByColumn,
+        bookObj,
+        setBookObj,
       } }
     >
       {children}

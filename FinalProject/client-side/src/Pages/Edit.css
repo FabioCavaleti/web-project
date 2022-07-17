@@ -32,3 +32,58 @@
 .exclude-button{
     color: red;
 }
+
+
+
+
+
+
+
+
+
+/**/
+.page-container{
+    display:flex;
+}
+
+.edit-form-container{
+    background-color:aqua;
+    width:60%;
+    padding-right: 5%;
+    padding-top: 1%;
+}
+
+
+
+
+
+
+.image-container{
+    background-color:rgb(175, 145, 145);
+    width:40%;
+    text-align:center;
+    padding-top: 1%;
+
+}
+
+.book-image{
+    width:40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
+.edit-img-link{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.input-img-div{
+    margin-top:1%;
+}
+
+.price-container{
+    margin-top:2%;
+}
+
+.qtd-container{
+    margin-top:2%
+}
