@@ -9,7 +9,7 @@ const EditClients = (props) => {
             <h1>Clientes</h1>
             <ul className='edit-list'>
 
-                {props.users.map((usr) => <li key={usr.id}>
+                {props.users.map((usr) => <li key={usr._id}>
                     {`Nome: ${usr.name}`}
                     <div className='buttons'>
                         <button className='edit-button no-btn-style'>Editar</button>

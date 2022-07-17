@@ -9,7 +9,7 @@ const EditAdmins = (props) => {
         <h1>Adms</h1>
         <ul className='edit-list'>
 
-            {adminUsers.map((adm) => <li key={adm.id}>
+            {adminUsers.map((adm) => <li key={adm._id}>
                 {`Nome: ${adm.name}`}
                 <div className='buttons'>
                     <button className='edit-button no-btn-style'>Editar</button>
