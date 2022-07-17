@@ -22,17 +22,23 @@ const EditBookForm = () =>{
 
     let {bookObj} = useContext(Context);
 
+    
+    
 
-    const [title, setTitle] = useState(bookObj.title)
-    const [author, setAuthor] = useState(bookObj.author)
-    const [edition, setEdition] = useState(bookObj.edition)
-    const[publisher, setPublisher] = useState(bookObj.publisher)
-    const[description,setDescription] = useState(bookObj.description)
-    const[genre,setGenre] = useState(bookObj.genre)
-    const[category,setCategory] = useState(bookObj.category)
-    const[img,setImg] = useState(bookObj.img)
-    const[price,setPrice] = useState(bookObj.price)
-    const[inv_qtd,setInv_qtd] = useState(bookObj.inv_qtd)
+
+    const [title, setTitle] = useState(/*bookObj.title*/)
+    const [author, setAuthor] = useState(/*bookObj.author*/)
+    const [edition, setEdition] = useState(/*bookObj.edition*/)
+    const[publisher, setPublisher] = useState(/*bookObj.publisher*/)
+    const[description,setDescription] = useState(/*bookObj.description*/)
+    const[genre,setGenre] = useState(/*bookObj.genre*/)
+    const[category,setCategory] = useState(/*bookObj.category*/)
+    const[img,setImg] = useState(/*bookObj.img*/)
+    const[price,setPrice] = useState(/*bookObj.price*/)
+    const[inv_qtd,setInv_qtd] = useState(/*bookObj.inv_qtd*/)
+
+    
+
 
 
 /*Validação de formulário*/ 
@@ -82,19 +88,11 @@ const EditBookForm = () =>{
 
 
     
-    
-
-
-
-
-
-
-
     return(
         <>
         <div className="page-container">
             <div className="image-container">
-                <img src={bookObj.img} className="book-image" alt="bookImage"/>
+                <img src="https://images-na.ssl-images-amazon.com/images/I/81m1s4wIPML.jpg" className="book-image" alt="bookImage"/>
                 <div>
                     {inputVisible == false ? (
                         <span className="edit-img-link" onClick={(e) => {setInputVisible(true)}}>Editar imagem</span>
@@ -178,7 +176,7 @@ const EditBookForm = () =>{
 
 
 
-                   {/* <Form.Group as={Col} md="3" controlId="validationCustom04">
+                    <Form.Group as={Col} md="3" controlId="validationCustom04">
                         <Form.Label>Gênero</Form.Label>
                         <Form.Select type="text" placeholder="State" required defaultValue={bookObj.genre}>
                             <option>Ação</option>
@@ -206,7 +204,7 @@ const EditBookForm = () =>{
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid zip.
                         </Form.Control.Feedback>
-                    </Form.Group>*/}
+                    </Form.Group>
 
 
 
@@ -224,7 +222,7 @@ const EditBookForm = () =>{
         
         </div> 
         <div className="teste">
-            oi
+            
         </div>
         </>  
     )

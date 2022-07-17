@@ -47,9 +47,12 @@
 }
 
 .edit-form-container{
-    background-color:aqua;
+    background-color:rgb(188, 188, 188);
     width:60%;
+    margin:2%;
+    border-radius:10px;
     padding-right: 5%;
+    padding-left:5%;
     padding-top: 1%;
 }
 
@@ -59,9 +62,11 @@
 
 
 .image-container{
-    background-color:rgb(175, 145, 145);
+    background-color:rgb(188, 188, 188);
+    border-radius: 10px;
     width:40%;
     text-align:center;
+    margin:2%;
     padding-top: 1%;
 
 }
