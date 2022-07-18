@@ -1,11 +1,12 @@
 import React from 'react';
 import {useContext} from 'react'
 import '../Pages/Edit.css'
-import ProductForm from '../Components/ProductForm'
+import ProductForm from './AddBookPage'
 import * as BookApi from '../helpers/BookApi'
 import Context from '../context/Context'
 
 import { Link } from 'react-router-dom'
+
 
 const EditProducts = (props) => {
     
@@ -30,7 +31,7 @@ const EditProducts = (props) => {
     return ( 
       
     <div className='edit-products manage container-fluid'>
-        <ProductForm/>
+        <Link to='/addBook'><button className="btn">Adicionar novo livro</button></Link>
         
         <h1>Livros</h1>
         <ul className='edit-list'>

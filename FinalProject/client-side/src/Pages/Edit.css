@@ -29,26 +29,36 @@
 	outline: inherit;
 }
 
+.btn{
+    margin: 10px;
+    padding: 20px;
+    width: 50%;
+    color: #000;
+    font-size: 24px;
+    font-weight: 700;
+    background-color: rgba(81, 122, 255, 0.90);
+    box-shadow: 0 0 0 0, 0 0 0 0;
+    border: 1px solid;
+    margin-bottom:5%;
+}
+
 .exclude-button{
     color: red;
 }
 
 
-
-
-
-
-
-
-
 /**/
 .page-container{
-    display:flex;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto ;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    width: 80% !important;
 }
 
 .edit-form-container{
-    background-color:rgb(188, 188, 188);
-    width:60%;
+    width:50%;
     margin:2%;
     border-radius:10px;
     padding-right: 5%;
@@ -56,15 +66,9 @@
     padding-top: 1% ;
 }
 
-
-
-
-
-
 .image-container{
-    background-color:rgb(188, 188, 188);
     border-radius: 10px;
-    width:40%;
+    width:50%;
     text-align:center;
     margin:2%;
     padding-top: 1%;
@@ -72,7 +76,7 @@
 }
 
 .book-image{
-    width:40%;
+    width:50%;
     display: block;
     margin-left: auto;
     margin-right: auto 

@@ -9,6 +9,7 @@ import Home from './Pages/Home'
 import BookInfo from './Pages/BookPage'
 import Admin from './Pages/Admin';
 import EditAdmins from './Pages/EditAdmins';
+import AddBook from './Pages/AddBookPage';
 import EditClients from './Pages/EditClients';
 import EditBookForm from './Pages/EditBookForm';
 
@@ -25,7 +26,6 @@ import Perfil from './Pages/Pefil';
 import EditProducts from './Pages/EditProducts';
 import Context from './context/Context';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   // Lista de livros disponiveis e itens do carrinho
@@ -167,6 +167,7 @@ function App() {
             <Route path='/perfil' element={<Perfil user={user} />} />
             <Route exact path="/" element={<Home bookList={bookList}/>} />
             <Route path='/editBook' element={<EditBookForm/>}/>   
+            <Route path='/addBook' element={<AddBook/>}/>
 
             <Route path="*" element={
               <div> Caminho nao existe</div>

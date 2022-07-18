@@ -6,11 +6,7 @@ import { Link } from 'react-router-dom'
 import {useState,useContext} from 'react'
 import Context from '../context/Context'
 
-//Bootstrap
-import Button from 'react-bootstrap/Button';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row'; 
+
 
 import '../Pages/Edit.css'
 
@@ -24,33 +20,20 @@ const EditBookForm = () =>{
 
 
 
-/*Validação de formulário*/ 
-    const [validated, setValidated] = useState(false);
 
-    const handleSubmit = (e) => {
-        const form = e.currentTarget;
-        if (form.checkValidity() === false) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        }
-        
-
-    updateBook();
-    setValidated(true);
-    };
+   
 
 
-    const [title, setTitle] = useState()
-    const [author, setAuthor] = useState()
-    const [edition, setEdition] = useState()
-    const[publisher, setPublisher] = useState()
-    const[description,setDescription] = useState()
-    const[genre,setGenre] = useState()
-    const[category,setCategory] = useState()
-    const[img,setImg] = useState()
-    const[price,setPrice] = useState()
-    const[inv_qtd,setInv_qtd] = useState()
+    const [title, setTitle] = useState(bookObj.title)
+    const [author, setAuthor] = useState(bookObj.author)
+    const [edition, setEdition] = useState(bookObj.edition)
+    const[publisher, setPublisher] = useState(bookObj.publisher)
+    const[description,setDescription] = useState(bookObj.description)
+    const[genre,setGenre] = useState(bookObj.genre)
+    const[category,setCategory] = useState(bookObj.category)
+    const[img,setImg] = useState(bookObj.img)
+    const[price,setPrice] = useState(bookObj.price)
+    const[inv_qtd,setInv_qtd] = useState(bookObj.inv_qtd)
 
 
   //Atualição do livro
@@ -68,156 +51,48 @@ const EditBookForm = () =>{
                 inv_qtd:Number(inv_qtd), 
                 sold_qtd:bookObj.sold_qtd,
             }
+        console.log(bookObj)
         BookApi.attBook(bookObj).then(AttBookList())
     }
      
-
-    
-
-
-
-
-
-    const[inputVisible,setInputVisible] = useState(false);
-
-
-
     
     return(
         <>
-        <div className="page-container">
-            <div className="image-container">
-                <img src={bookObj.img} className="book-image" alt="bookImage"/>
-                <div>
-                    {inputVisible == false ? (
-                        <span className="edit-img-link" onClick={(e) => {setInputVisible(true)}}>Editar imagem</span>
-                        ):
-                        (
-                            <div className="input-img-div">
-                                <input type="text" onChange={(e) => {setImg(e.target.value)}} onDragEnterCapture={(e) => {setInputVisible(false)}}/>
-                                <Button onClick={(e) => {setInputVisible(false)}}>Salvar imagem</Button>
-                            </div>
-                        )}
-                </div>  
-
-                <div className="price-container"> 
-                    <span>Preço: R$<input type="number"></input> </span>
+            <div className="page-container">
+                <div className="image-container">
+                    <img src={bookObj.img} className="book-image" alt="bookImage"/>
                 </div>
 
+                <div className="edit-form-container">
+                    <div className="input-line"><span className="">Título:</span><input defaultValue={bookObj.title} placeholder='Digite o nome do livro' onChange={(e) => setTitle(e.target.value)}></input></div><br></br>
+                    <div className=""><span className="">Autor:</span><input defaultValue={bookObj.author} placeholder='Digite o nome do autor' onChange={(e) => setAuthor(e.target.value)}></input></div><br></br>
+                    <div className=""><span className="">Edição:</span><input defaultValue={bookObj.edition} type="number" placeholder='Selecione a edição do livro' onChange={(e) => setEdition(e.target.value)}></input></div><br></br>
+                    <div className=""><span className="">Editora:</span><input defaultValue={bookObj.publisher} type="text" placeholder='Digite o nome da editora do livro' onChange={(e) => setPublisher(e.target.value)}></input></div><br></br>
+                    <div className=""><span className="">Descrição:</span><textarea defaultValue={bookObj.description} className="text-area"  placeholder='Digite a sinopse do livro' onChange={(e) => setDescription(e.target.value)}></textarea></div><br></br>
+                    <div className=""><span className="" >Gênero:</span>
+                    <select type="text" onChange={(e) => setGenre(e.target.value)}>
+                        <option>Ação</option>
+                        <option>Aventura</option>
+                        <option>Terror</option>
+                        <option>Suspense</option>
+                    </select></div><br></br>
+                    <div className=""><span className="">Categoria:</span>
+                    <select type="text" onChange={(e) => setCategory(e.target.value)}>
+                        <option>Lançamento</option>
+                        <option>Clássico</option>
+                        <option>HQ/Manga</option>
+                        <option>Literatura infatujuvenil</option>
+                        <option>Literatura nacional</option>
+                    </select></div><br></br>
+                    <div className=""><span className="">Imagem:</span><input defaultValue={bookObj.img} type="text" placeholder='Coloque a url da capa do livro' onChange={(e) => setImg(e.target.value)}></input></div><br></br>
+                    <div className=""><span className="">Preço:</span><input defaultValue={bookObj.price} type="number" placeholder='Digite o preço do livro' onChange={(e) => setPrice(e.target.value)}></input></div><br></br>
+                    <div className=""><span className="">Quantidade em estoque:</span><input defaultValue={bookObj.inv_qtd} type="number" placeholder='Selecione a quantidade de livros em estoque' onChange={(e) => setInv_qtd(e.target.value)}></input></div><br></br>
 
-                <div className="qtd-container"> 
-                    <span>Quantidade em estoque:<input type="number"></input> </span>
+                    <Link to='/admin/edit/products'>
+                        <button className="btn" onClick={updateBook}>Salvar alterações</button>
+                    </Link>
                 </div>
-
-
-
-
-
             </div>
-            <div className="edit-form-container">
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <Row className="mb-3">
-                    <Form.Group as={Col} md="4" controlId="validationCustom01">
-                        <Form.Label>Título</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="Título"
-                            defaultValue={bookObj.title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustom02">
-                        <Form.Label>Autor(a)</Form.Label>
-                        <Form.Control
-                            required
-                            type="text"
-                            placeholder="Autor(a)"
-                            defaultValue={bookObj.author}
-                            onChange={(e) => setAuthor(e.target.author)}
-                        />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-                        <Form.Label>Editora</Form.Label>
-                            <Form.Control
-                            type="text"
-                            placeholder="Editora"
-                            aria-describedby="inputGroupPrepend"
-                            defaultValue={bookObj.publisher}
-                            required
-                            onChange={(e) => setPublisher(e.target.value)}
-                            />
-                            <Form.Control.Feedback type="invalid">
-                            Please choose a username.
-                            </Form.Control.Feedback>
-                    </Form.Group>
-                </Row>
-                <Row className="mb-3">
-                    <Form.Group as={Col} md="6" controlId="validationCustom03">
-                        <Form.Label>Descrição</Form.Label>
-                        <Form.Control 
-                            type="text" 
-                            as="textarea"
-                            placeholder="Descrição"
-                            defaultValue={bookObj.description} 
-                            required 
-                            onChange={(e) => setDescription(e.target.value)}/>
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a valid city.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-
-
-
-                    <Form.Group as={Col} md="3" controlId="validationCustom04">
-                        <Form.Label>Gênero</Form.Label>
-                        <Form.Select type="text" placeholder="State" required >
-                            <option>Ação</option>
-                            <option>Aventura</option>
-                            <option>Terror</option>
-                            <option>Romance</option>
-                            <option>Suspense</option>
-                        </Form.Select>
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a valid state.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom05">
-                        <Form.Label>Categoria</Form.Label>
-                        <Form.Select type="text" placeholder="Zip" required >
-                            <option>Mais vendidos</option>
-                            <option>Lançamentos</option>
-                            
-                        </Form.Select>
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a valid zip.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-                    <Form.Group as={Col} md="3" controlId="validationCustom06">
-                        <Form.Label>Edição</Form.Label>
-                        <Form.Control type="text" placeholder="" required defaultValue={bookObj.edition}></Form.Control>
-                        <Form.Control.Feedback type="invalid">
-                            Please provide a valid zip.
-                        </Form.Control.Feedback>
-                    </Form.Group>
-
-
-
-
-                </Row>
-                <Button type="submit" onClick={handleSubmit}>Salvar alterações</Button>
-            </Form>
-                
-
-
-            
-            </div>
-            
-            
-        
-        </div>
         </>  
     )
 
