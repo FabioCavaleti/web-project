@@ -5,7 +5,7 @@ const DescriptionCard = ({book}) => {
     return ( 
         <div className='description-card container-fluid'>
             <h3>Descrição</h3>
-            <p>{book.descricao}</p>
+            <p>{book.description}</p>
 
         </div>
      );
