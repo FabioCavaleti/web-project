@@ -36,7 +36,7 @@ const SignUp = ({handleLogin, handleAdm, handleUser}) => {
 
         window.alert("Cadastro efetuado com sucesso!!")
 
-        navigate('/sing-in');
+        navigate('/sign-in');
 
 
     }

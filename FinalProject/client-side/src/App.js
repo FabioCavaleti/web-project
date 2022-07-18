@@ -113,8 +113,9 @@ function App() {
     if(item.qtd > 1 )
     {
       item.qtd -= 1;
+      let index = cart.indexOf(item)
       let filteredCart = cart.filter(i => i._id !== item._id)
-      filteredCart.push(item);
+      filteredCart.splice(index, 0, item)
       setCart(filteredCart);
     }
     else{
@@ -126,8 +127,9 @@ function App() {
     if( item.qtd < item.inv_qtd)
     {
       item.qtd += 1;
+      let index = cart.indexOf(item)
       let filteredCart = cart.filter(i => i._id !== item._id)
-      filteredCart.push(item);
+      filteredCart.splice(index, 0, item);
       setCart(filteredCart);
 
     }
