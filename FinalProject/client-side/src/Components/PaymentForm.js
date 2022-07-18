@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import {Navigate, useNavigate} from 'react-router-dom'
 import * as BookApi from '../helpers/BookApi'
 import Context from '../context/Context';
+import {AttBookList} from '../context/Provider'
 
 
 const PaymentForm = (props) => {
@@ -40,9 +41,8 @@ const PaymentForm = (props) => {
                 inv_qtd: item.inv_qtd - item.qtd
             }
             
-            BookApi.attBook(obj).then(AttBookList());
-
-            // Falta atualizar booklist com os novos dados do banco
+            BookApi.attBook(obj, obj.title);
+            AttBookList()
             
             
         })

@@ -23,7 +23,7 @@ const ProductForm = () => {
     const[price,setPrice] = useState()
     const[inv_qtd,setInv_qtd] = useState()
 
-    const { AttBooklist } = useContext(Context);
+    const { AttBookList } = useContext(Context);
 
 
     const addNewBook = (e) => {
@@ -46,7 +46,8 @@ const ProductForm = () => {
         console.log(bookObj)
 
         alert("Livro adicionado ao estoque");
-        BookApi.addBook(bookObj).then(AttBooklist());
+        BookApi.addBook(bookObj)
+        AttBookList();
     }
 
 
