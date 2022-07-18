@@ -85,10 +85,11 @@ Nosso plano de teste é apenas navegar pelo site. É possivel se cadastrar, cria
 ---
 Clone o repositório. Com o terminal, entre no diretório '/web-project/FinalProject/server-side'. Após isso, rode os comandos para rodar código react com npm:
 - npm install (esse comando automaticamente da npm install na parte do cliente também)
-- npm run start_dev (esse comando inicia o server e o client no mesmo terminal)
+- node server.js (inicia o servidor e fornece as páginas criadas pelo react)
+- Acesse o link http://localhost:3000/
 ## Problemas
 --- 
-- Ainda não finalizamos todas as funcionalidades, pode haver algumas páginas com design estranho ou algumas funcionalidades funcionando pela metade.
+- As seguintes funcionalidades estão ausentes: Editar clientes e informações de perfil
 ## Comentários
 ---
 
