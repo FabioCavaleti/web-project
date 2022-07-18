@@ -35,3 +35,13 @@ export const getLogin = async (userObj) => {
      const data = await response.json();
      return data;
    }
+
+
+export const deleteUserByName = async (name) => {
+const url = `/api/deleteUser/${name}`;
+const response = await fetch(url, {
+  method: 'DELETE',
+});
+const data = await response.json();
+return data;
+}
