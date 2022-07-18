@@ -20,7 +20,7 @@ const EditBookForm = () =>{
 
 
 
-
+    const bookToChange = bookObj.title
    
 
 
@@ -52,7 +52,7 @@ const EditBookForm = () =>{
                 sold_qtd:bookObj.sold_qtd,
             }
         console.log(bookObj)
-        BookApi.attBook(bookObj).then(AttBookList())
+        BookApi.attBook(bookObj,bookToChange).then(AttBookList())
     }
      
     

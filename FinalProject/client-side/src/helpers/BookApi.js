@@ -37,8 +37,8 @@ export const deleteBookByTitle = async (title) => {
   return data;
 }
 
-export const attBook = async (bookObj) => {
-  const url = `/api/attBook/${bookObj.title}`;
+export const attBook = async (bookObj,bookToChange) => {
+  const url = `/api/attBook/${bookToChange}`;
   const response = await fetch(url, {
     method: 'PUT',
     headers: {
